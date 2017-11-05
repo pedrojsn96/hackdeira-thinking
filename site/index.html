@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>RasPimenta | Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="javascript:void(0);">RASPIMENTA</a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+
+    <section class="content" style="margin-left: 0px;">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-red">
+                            <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Temperatura</div>
+                            <div id="temperatura_display" class="number">
+                                <span id="numero">0</span>
+                                <span id="medida">º C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-blue">
+                            <i class="fa fa-tint" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Umidade</div>
+                            <div id="umidade_display" class="number">
+                                <span id="numero">0</span>
+                                <span id="medida">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-yellow">
+                            <i class="fa fa-magnet" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Resitência do solo</div>
+                            <div id="umidade_solo_display" class="number">
+                                <span id="numero">0</span>
+                                <span id="medida">Ω</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>DHT22 - Temperatura</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="dht22_chart_temperatura" class="dashboard-flot-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>DHT22 - Umidade</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="dht22_chart_umidade" class="dashboard-flot-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>ADS115 - Umidade</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="ads115_chart_umidade" class="dashboard-flot-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
+    <!-- ChartJs -->
+    <script src="plugins/chartjs/Chart.bundle.js"></script>
+    
+    <!-- Flot Charts Plugin Js -->
+    <script src="plugins/flot-charts/jquery.flot.js"></script>
+    
+    <!-- Firebase Connection -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <script>
+        var data = [], totalPoints = 110;
+        var mostrar = true;
+        var plotTemperatura, plotUmidade, values, plotSolo, values2;
+        firebase.initializeApp({
+            apiKey: "AIzaSyCrwg3vqVXTsddJ0t-r7f785gRQ_qhikvo",
+            authDomain: "hackadeira.firebaseapp.com",
+            databaseURL: "https://hackadeira.firebaseio.com",
+            projectId: "hackadeira",
+            storageBucket: "hackadeira.appspot.com",
+            messagingSenderId: "103797089849"
+        });
+
+        let db = firebase.database();
+
+        db.ref('/dht22').limitToLast(101).once('value', (snap) => {
+            values = Object.values(snap.val());
+            let tres = [];
+            let ures = [];
+            for(let i in values){
+                tres.push([parseInt(i),parseFloat(values[i].temperatura)]);
+                ures.push([parseInt(i),parseFloat(values[i].umidade)]);
+            }
+            init1(tres);
+            setTimeout(() => {
+
+                init2(ures);
+                db.ref('/dht22').on('child_added', (snap) => {
+                    values.shift();
+                    values.push(snap.val());
+                    $('#temperatura_display #numero').text(snap.val().temperatura);
+                    $('#umidade_display #numero').text(snap.val().umidade);
+                    setTimeout(() => {
+                        updateGrapht(values);
+                        setTimeout(() => {
+                            updateGraphu(values);
+                        }, 100);
+                    }, 100);
+                });
+            }, 1000);
+        });
+
+        db.ref('/ads115').limitToLast(101).once('value', (snap) => {
+            values2 = Object.values(snap.val());
+            let sres = [];
+            for(let i in values2){
+                sres.push([parseInt(i),parseFloat(values2[i].umidade)]);
+            }
+            init3(sres);
+            setTimeout(() => {
+                db.ref('/ads115').on('child_added', (snap) => {
+                    values2.shift();
+                    values2.push(snap.val());
+                    $('#umidade_solo_display #numero').text(snap.val().umidade);
+                    setTimeout(() => {
+                        updateGraphs(values2);
+                    }, 100);
+                });
+            }, 1000);
+        });
+
+
+        function updateGrapht(values){
+            let res = [];
+            for(let i in values){
+                res.push([parseInt(i),parseFloat(values[i].temperatura)]);
+            }
+            plotTemperatura.setData([res]);
+            plotTemperatura.draw();
+        }
+
+        function updateGraphs(values){
+            let res = [];
+            for(let i in values){
+                res.push([parseInt(i),parseFloat(values[i].umidade)]);
+            }
+            plotSolo.setData([res]);
+            plotSolo.draw();
+        }
+
+        function updateGraphu(values){
+            let res = [];
+            for(let i in values){
+                res.push([parseInt(i),parseFloat(values[i].umidade)]);
+            }
+            plotUmidade.setData([res]);
+            plotUmidade.draw();
+        }
+
+        function init1(dados){
+            $('#temperatura_display #numero').text(dados[dados.length-1][1]);
+            plotTemperatura = $.plot('#dht22_chart_temperatura', [dados], {
+                series: {
+                    shadowSize: 0,
+                    color: '#f44336'
+                },
+                grid: {
+                    borderColor: '#f3f3f3',
+                    borderWidth: 1,
+                    tickColor: '#f3f3f3',
+                },
+                lines: {
+                    fill: true
+                },
+                yaxis: {
+                    min: 0,
+                    max: 70,
+                    tickSize: 5,
+                    tickFormatter: function(number){
+                        return number + 'º C';
+                    }
+                },
+                xaxis: {
+                    min: 0,
+                    max: 100
+                }
+            });
+        }
+
+        function init2(dados){
+            $('#umidade_display #numero').text(dados[dados.length-1][1]);
+            plotUmidade = $.plot('#dht22_chart_umidade', [dados], {
+                series: {
+                    shadowSize: 0,
+                    color: 'rgb(0, 188, 212)'
+                },
+                grid: {
+                    borderColor: '#f3f3f3',
+                    borderWidth: 1,
+                    tickColor: '#f3f3f3',
+                },
+                lines: {
+                    fill: true
+                },
+                yaxis: {
+                    min: 0,
+                    max: 100,
+                    tickSize: 10,
+                    tickFormatter: function(number){
+                        return number + '%';
+                    }
+                },
+                xaxis: {
+                    min: 0,
+                    max: 100
+                }
+            });
+        }
+
+        function init3(dados){
+            $('#umidade_solo_display #numero').text(dados[dados.length-1][1]);
+            plotSolo = $.plot('#ads115_chart_umidade', [dados], {
+                series: {
+                    shadowSize: 0,
+                    color: '#ffe821'
+                },
+                grid: {
+                    borderColor: '#f3f3f3',
+                    borderWidth: 1,
+                    tickColor: '#f3f3f3',
+                },
+                lines: {
+                    fill: true
+                },
+                yaxis: {
+                    min: 0,
+                    max: 5000,
+                    tickSize: 1000,
+                    tickFormatter: function(number){
+                        return number + ' Ω';
+                    }
+                },
+                xaxis: {
+                    min: 0,
+                    max: 100
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
